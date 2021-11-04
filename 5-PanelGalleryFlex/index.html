@@ -13,6 +13,8 @@
   </head>
   <body>
     <style>
+      /*        We will mainly work on CSS as this challenge is more based upon practicing flexbox,transitions while setting up the gallery panels.
+       */
       html {
         box-sizing: border-box;
         background: #ffc600;
@@ -31,6 +33,7 @@
       .panels {
         min-height: 100vh;
         overflow: hidden;
+        display: flex;
       }
       .panel {
         background: #6b0f9c;
@@ -43,6 +46,11 @@
         font-size: 20px;
         background-size: cover;
         background-position: center;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
       }
       .panel1 {
         background-image: url(./Images/HeyLetsDance.jpg);
@@ -65,6 +73,23 @@
         margin: 0;
         width: 100%;
         transition: transform 0.5s;
+        flex: 1 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .panel > *:first-child {
+        transform: translateY(-100%);
+      }
+      .panel.open-active > *:first-child {
+        transform: translateY(0);
+      }
+      .panel > *:last-child {
+        transform: translateY(100%);
+      }
+      .panel.open-active > *:last-child {
+        transform: translateY(0);
       }
       .panel p {
         text-transform: uppercase;
@@ -76,6 +101,7 @@
         font-size: 4em;
       }
       .panel.open {
+        flex: 5;
         font-size: 40px;
       }
     </style>
@@ -108,7 +134,20 @@
     </div>
 
     <script>
-      //Main Exercise will start from here.
+      //JavaScript to carry out transitions.
+      const panels = document.querySelectorAll(".panel");
+      function toggleOpen() {
+        this.classList.toggle("open");
+      }
+      function toggleActive(e) {
+        if (e.propertyName.includes("flex-grow")) {
+          this.classList.toggle("open-active");
+        }
+      }
+      panels.forEach((panel) => panel.addEventListener("click", toggleOpen));
+      panels.forEach((panel) =>
+        panel.addEventListener("transitionend", toggleActive)
+      );
     </script>
   </body>
 </html>
