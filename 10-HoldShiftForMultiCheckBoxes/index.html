@@ -16,7 +16,7 @@
       .inbox {
         max-width: 400px;
         margin: 50px auto;
-        background: rgb(206, 201, 201);
+        background: white;
         border-radius: 5px;
         box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
       }
@@ -31,7 +31,7 @@
       }
 
       input:checked + p {
-        background: grey;
+        background: whitesmoke;
         text-decoration: line-through;
       }
       input[type="checkbox"] {
@@ -51,7 +51,7 @@
 
     <div class="inbox">
       <div class="item">
-        <input type="checkboxes" />
+        <input type="checkbox" />
         <p>This is an inbox layout.</p>
       </div>
       <div class="item">
@@ -87,6 +87,34 @@
         <p>Don't forget to tweet your result!</p>
       </div>
     </div>
-    <script></script>
+    <script>
+      const checkboxes = document.querySelectorAll(
+        '.inbox input[type="checkbox"]'
+      );
+      let lastChecked;
+
+      function handleCheck(e) {
+        let inBetween = false;
+        //First, check if it had the shift key down.
+        //And check that they are checking it.
+        if (e.shiftKey && this.checked) {
+          checkboxes.forEach((checkbox) => {
+            console.log(checkbox);
+            if (checkbox === this || checkbox === lastChecked) {
+              inBetween = !inBetween;
+              console.log("Starting to check them in between.");
+            }
+            if (inBetween) {
+              checkbox.checked = true;
+            }
+          });
+        }
+        lastChecked = this;
+      }
+
+      checkboxes.forEach((checkbox) =>
+        checkbox.addEventListener("click", handleCheck)
+      );
+    </script>
   </body>
 </html>
