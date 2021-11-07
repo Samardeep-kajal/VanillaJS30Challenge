@@ -65,7 +65,7 @@ body {
   height: 30px;
 }
 
-player_controls {
+.player_controls {
   display: flex;
   position: absolute;
   bottom: 0;
@@ -95,15 +95,15 @@ player_controls {
   flex-basis: 100%;
   height: 5px;
   transition: height 0.3s;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(107, 105, 105, 0.5);
   cursor: ew-resize;
 }
 
-progress-filled {
+.progress_filled {
   width: 50%;
-  background: #1100ff;
+  background: skyblue;
   flex: 0;
-  flex-basis: 50%;
+  flex-basis: 0%;
 }
 
 /* Unholy css to style input type="range" */
