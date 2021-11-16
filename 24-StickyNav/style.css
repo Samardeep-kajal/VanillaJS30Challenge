@@ -13,8 +13,7 @@ body {
 *,
 *:before,
 *:after {
-  max-width: 700px;
-  margin: 70px auto;
+  margin: auto;
 }
 
 .site-wrap {
@@ -31,8 +30,7 @@ body {
 header {
   text-align: center;
   height: 50vh;
-  background: url(https://source.unsplash.com/GKN6rpDr0EI/960x640) bottom center
-    no-repeat;
+  background: url(https://source.unsplash.com/GKN6rpDr0EI/960x640) bottom center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -52,6 +50,11 @@ nav {
   transition: all 0.5s;
   position: relative;
   z-index: 1;
+}
+
+.fixed-nav nav {
+  position: fixed;
+  box-shadow: 0 5px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
@@ -82,6 +85,9 @@ li.logo a {
   color: black;
 }
 
+.fixed-nav li.logo {
+  max-width: 500px;
+}
 nav a {
   text-decoration: none;
   padding: 20px;
