@@ -43,6 +43,32 @@
 
     <script>
       //Main scripting exercise will start from here.
+      const divs = document.querySelectorAll("div");
+      const button = document.querySelector("button");
+      function logText(e) {
+        console.log(this.classList.value);
+        // e.stopPropagation(); //It stops bubbling!
+        // console.log(this);
+      }
+
+      divs.forEach((div) =>
+        div.addEventListener("click", logText, {
+          capture: true,
+          //True -> from top to bottom inside children
+          //False(default) -> from bottom to top parents
+          once: true,
+        })
+      );
+
+      button.addEventListener(
+        "click",
+        () => {
+          console.log("Click!!!");
+        },
+        {
+          once: true,
+        }
+      );
     </script>
   </body>
 </html>
